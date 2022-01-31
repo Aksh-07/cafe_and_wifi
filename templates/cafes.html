@@ -1,0 +1,57 @@
+{% extends 'bootstrap/base.html' %}
+{% block styles %}
+{{ super() }}
+	<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Restaurants{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+
+      <h1>All Cafes</h1>
+
+	  <table class="table">
+
+          <tr>
+              <td>Location Url</td>
+              <td>Cafe Name</td>
+              <td>Location</td>
+              <td>Has Wifi</td>
+              <td>Has Toilets</td>
+              <td>Has Sockets</td>
+              <td>Can Take Calls</td>
+              <td>Coffee Price</td>
+              <td>Seats</td>
+              <td>Image Link</td>
+          </tr>
+
+          {% for data in cafes %}
+              <tr>
+
+                  <td><a href="{{data.map_url}}">Maps Link</a> </td>
+                  <td>{{data.name}}</td>
+                  <td>{{data.location}}</td>
+                  <td>{{data.has_wifi}}</td>
+                  <td>{{data.has_toilet}}</td>
+                  <td>{{data.has_sockets}}</td>
+                  <td>{{data.can_take_calls}}</td>
+                  <td>{{data.coffee_price}}</td>
+                  <td>{{data.seats}}</td>
+                  <td><a href="{{data.img_url}}">Img Link</a> </td>
+
+              </tr>
+          {% endfor %}
+
+  	  </table>
+      <a class="btn btn-warning btn-lg" href="{{url_for('add_cafe')}}" role="button">Add Cafe.</a>
+      <p><a href="{{url_for('home')}}">Return to index page</a></p>
+
+    </div>
+  </div>
+</div>
+
+{% endblock %}
